@@ -52,7 +52,14 @@ public class ItemLeaf implements Item {
 
     public double getPrice() {
         return price;
-    };
+    }
+
+    @Override
+    public double getMarketPrice() {
+        return accept(new PriceCalculator());
+    }
+
+    ;
 
     public int getPosX() {
         return posX;
@@ -90,6 +97,21 @@ public class ItemLeaf implements Item {
 
     public boolean hasNext() {
         return false;
+    }
+
+    // Visitor Implementation
+    @Override
+    public double accept(Visitor visitor) {
+        //double marketPrice = 0;
+        //if(!getChildren().isEmpty()){
+            //for(int i = 0; i < getChildren().size(); i++){
+                //marketPrice += getChildren().get(i).accept(visitor);
+            //}
+            //marketPrice += visitor.visit(this);
+        //}else {
+            //marketPrice = this.getPrice();
+        //}
+        return 0;
     }
 
     // Utility

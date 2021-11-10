@@ -7,6 +7,7 @@ import com.smartFarmApp.dashboard.items.Item;
 import com.smartFarmApp.dashboard.items.ItemContainer;
 import com.smartFarmApp.dashboard.items.ItemLeaf;
 
+
 import javafx.animation.PathTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
@@ -290,6 +291,7 @@ public class SmartFarmAppDashboardController {
                     "InfoBox: X Coordinate Error", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
+
         ItemsTreeView.refresh();
         updateFarmItemsTree();
         MultipleSelectionModel msm = ItemsTreeView.getSelectionModel();
@@ -304,6 +306,14 @@ public class SmartFarmAppDashboardController {
         rect.setStrokeWidth(2);
         rect.setFill(Color.TRANSPARENT);
         FarmViewVBox.getChildren().add(rect);
+    }
+
+    private void getMarketPrice(){
+        Item selectedItem = getSelectedItem();
+
+        double itemMarketPrice = selectedItem.getMarketPrice();
+        System.out.println(itemMarketPrice);
+
     }
 
     //Draws an ItemContainer
@@ -383,6 +393,9 @@ public class SmartFarmAppDashboardController {
                     SelectedWidth.setText(String.valueOf(selectedItem.getWidth()));
                     SelectedHeight.setText(String.valueOf(selectedItem.getHeight()));
                     SelectedPrice.setText(String.valueOf(selectedItem.getPrice()));
+                    if(selectedItem.getName() != "Farm"){
+                        getMarketPrice();
+                    }
                 });
     }
 

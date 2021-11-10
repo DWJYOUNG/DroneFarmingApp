@@ -29,6 +29,11 @@ public class ItemContainer extends ItemLeaf {
         return children;
     }
 
+    public double getMarketPrice(ItemContainer itemContainer){
+        accept(new PriceCalculator());
+        return 0;
+    }
+
     public boolean hasNext() {
         if (index == children.size()) {
             index = 0;
@@ -41,5 +46,12 @@ public class ItemContainer extends ItemLeaf {
         Item nextItem = this.children.get(index);
         index++;
         return nextItem;
+    }
+
+    @Override
+    public double accept(Visitor visitor) {
+        double marketPrice = 0;
+        marketPrice = visitor.visit(this);
+        return marketPrice;
     }
 }

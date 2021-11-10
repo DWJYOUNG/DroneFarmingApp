@@ -1,6 +1,7 @@
 package com.smartFarmApp.dashboard.items;
 
 
+
 import java.util.ArrayList;
 
 public interface Item {
@@ -13,6 +14,7 @@ public interface Item {
     // Getters
     public String getName();
     public double getPrice();
+    public double getMarketPrice();
     public int getPosX();
     public int getPosY();
     public int getLength();
@@ -27,4 +29,7 @@ public interface Item {
     // Iteration
     public Item next();
     public boolean hasNext();
+
+    // Vistitor implementation
+    public double accept(Visitor visitor);
 }
