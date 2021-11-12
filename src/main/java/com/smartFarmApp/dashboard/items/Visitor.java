@@ -3,5 +3,6 @@ package com.smartFarmApp.dashboard.items;
 
 public interface Visitor {
 
-    double visit(Item itemContainer);
+    double visit(ItemLeaf item);
+    double visit(ItemContainer itemContainer);
 }

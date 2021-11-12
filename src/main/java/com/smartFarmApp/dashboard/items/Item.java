@@ -32,4 +32,7 @@ public interface Item {
 
     // Vistitor implementation
     public double accept(Visitor visitor);
+
+    // Visitor Implementation
+    public double accept(MarketPrice visitor);
 }

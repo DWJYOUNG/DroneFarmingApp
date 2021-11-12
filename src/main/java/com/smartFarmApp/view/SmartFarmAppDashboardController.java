@@ -3,9 +3,7 @@ package com.smartFarmApp.view;
 import javax.swing.JOptionPane;
 
 import com.smartFarmApp.dashboard.Main;
-import com.smartFarmApp.dashboard.items.Item;
-import com.smartFarmApp.dashboard.items.ItemContainer;
-import com.smartFarmApp.dashboard.items.ItemLeaf;
+import com.smartFarmApp.dashboard.items.*;
 
 
 import javafx.animation.PathTransition;
@@ -70,6 +68,10 @@ public class SmartFarmAppDashboardController {
     private TreeView<Item> ItemsTreeView;
     @FXML
     private GridPane SelectedItemProperties;
+    @FXML
+    private Label purchasePrice;
+    @FXML
+    private Label marketPrice;
     // Selected Item Properties
     @FXML
     private TextField SelectedName;
@@ -394,7 +396,11 @@ public class SmartFarmAppDashboardController {
                     SelectedHeight.setText(String.valueOf(selectedItem.getHeight()));
                     SelectedPrice.setText(String.valueOf(selectedItem.getPrice()));
                     if(selectedItem.getName() != "Farm"){
-                        getMarketPrice();
+                        String purchasePriceText = String.valueOf(selectedItem.accept(new Price()));
+                        String marketPriceText = String.valueOf(selectedItem.accept(new MarketPrice()));
+                        System.out.println("Market Price = " + marketPriceText + ", Price = " + purchasePriceText);
+                        purchasePrice.setText(purchasePriceText);
+                        marketPrice.setText(marketPriceText);
                     }
                 });
     }

@@ -56,7 +56,7 @@ public class ItemLeaf implements Item {
 
     @Override
     public double getMarketPrice() {
-        return accept(new PriceCalculator());
+        return accept(new MarketPrice());
     }
 
     ;
@@ -99,19 +99,15 @@ public class ItemLeaf implements Item {
         return false;
     }
 
-    // Visitor Implementation
     @Override
     public double accept(Visitor visitor) {
-        //double marketPrice = 0;
-        //if(!getChildren().isEmpty()){
-            //for(int i = 0; i < getChildren().size(); i++){
-                //marketPrice += getChildren().get(i).accept(visitor);
-            //}
-            //marketPrice += visitor.visit(this);
-        //}else {
-            //marketPrice = this.getPrice();
-        //}
-        return 0;
+        return visitor.visit(this);
+    }
+
+    // Visitor Implementation
+    @Override
+    public double accept(MarketPrice visitor) {
+        return visitor.visit(this);
     }
 
     // Utility
