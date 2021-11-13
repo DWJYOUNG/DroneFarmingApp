@@ -12,7 +12,7 @@ import javafx.util.Duration;
  * @author ikyuen
  *
  */
-public class DroneAnimation implements DroneAnimationInterface {
+public class DroneAnimation implements DroneControl {
 
 	private ImageView drone;
 	private SequentialTransition sequence;
