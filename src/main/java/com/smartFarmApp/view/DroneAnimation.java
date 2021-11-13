@@ -12,7 +12,7 @@ import javafx.util.Duration;
  * @author ikyuen
  *
  */
-public class DroneAnimation implements DroneControl {
+public class DroneAnimation implements SimulatedDrone {
 
 	private ImageView drone;
 	private SequentialTransition sequence;
@@ -26,28 +26,28 @@ public class DroneAnimation implements DroneControl {
 		sequence = new SequentialTransition();
 	}
 
-	private void moveUp(int dist) {
+	private void flyUp(int dist) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setNode(drone);
 		translate.setDuration(Duration.millis(magicTimeMs));
 		translate.setByY(-dist);
 		sequence.getChildren().add(translate);
 	}
-	private void moveDown(int dist) {
+	private void flyDown(int dist) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setNode(drone);
 		translate.setDuration(Duration.millis(magicTimeMs));
 		translate.setByY(dist);
 		sequence.getChildren().add(translate);
 	}
-	private void moveLeft(int dist) {
+	private void flyLeft(int dist) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setNode(drone);
 		translate.setDuration(Duration.millis(magicTimeMs));
 		translate.setByX(-dist);
 		sequence.getChildren().add(translate);
 	}
-	private void moveRight(int dist) {
+	private void flyRight(int dist) {
 		TranslateTransition translate = new TranslateTransition();
 		translate.setNode(drone);
 		translate.setDuration(Duration.millis(magicTimeMs));
@@ -98,22 +98,22 @@ public class DroneAnimation implements DroneControl {
 		this.setup();
 
 		this.rotateCCW(90);
-		this.moveDown(600);
+		this.flyDown(600);
 		this.rotateCW(90);
-		this.moveRight(800);
+		this.flyRight(800);
 		this.rotateCW(90);
-		this.moveUp(600);
+		this.flyUp(600);
 		this.rotateCW(90);
 
 
 		for(int i = 0; i < 4; i++) {
-			this.moveLeft(100);
+			this.flyLeft(100);
 			this.rotateCW(90);
-			this.moveDown(500);
+			this.flyDown(500);
 			this.rotateCCW(90);
-			this.moveLeft(100);
+			this.flyLeft(100);
 			this.rotateCCW(90);
-			this.moveUp(500);
+			this.flyUp(500);
 			this.rotateCW(90);
 		}
 
@@ -146,16 +146,16 @@ public class DroneAnimation implements DroneControl {
 			yRot = -1;
 		}
 
-		this.moveRight(dispX);
+		this.flyRight(dispX);
 		this.rotateCCW(xRot*yRot*90);
-		this.moveDown(dispY);
+		this.flyDown(dispY);
 
 		this.rotateCW(360);
 		this.rotateCW(xRot*yRot*90);
 
-		this.moveLeft(dispX);
+		this.flyLeft(dispX);
 		this.rotateCCW(xRot*yRot*90);
-		this.moveUp(dispY);
+		this.flyUp(dispY);
 
 		this.rotateCW(xRot*yRot*90);
 

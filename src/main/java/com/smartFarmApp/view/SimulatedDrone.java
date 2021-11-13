@@ -1,6 +1,6 @@
 package com.smartFarmApp.view;
 
-public interface DroneControl {
+public interface SimulatedDrone {
     void scanFarm();
     void visitItem(int dispX, int dispY);
 }
