@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SmartFarmApp" target="11" />
+      <module name="SmartFarmApp" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

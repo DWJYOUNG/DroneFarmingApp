@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="RootAnchorPane" maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: rgb(255, 255, 255);;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartFarmApp.view.SmartFarmAppDashboardController">
     <children>
-        <SplitPane fx:id="ControlsSplitPane" dividerPositions="0.6" layoutY="-4.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="0.0">
+        <SplitPane fx:id="ControlsSplitPane" dividerPositions="0.6296992481203008" layoutY="-4.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="0.0">
             <items>
 
                 <!-- FARM ITEMS -->
@@ -64,9 +64,9 @@
                             </rowConstraints>
                         </GridPane>
                   <Label layoutX="184.0" layoutY="230.0" text="Current Market Value:" />
-                  <Label fx:id="marketPrice" layoutX="315.0" layoutY="230.0" text="0.0" />
+                  <Label fx:id="marketPrice" layoutX="346.0" layoutY="230.0" text="0.0" />
                   <Label layoutX="184.0" layoutY="261.0" text="Purchase Price:" />
-                  <Label fx:id="purchasePrice" layoutX="315.0" layoutY="261.0" text="0.0" />
+                  <Label fx:id="purchasePrice" layoutX="346.0" layoutY="261.0" text="0.0" />
 
 
                     </children>

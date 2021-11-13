@@ -1,0 +1,46 @@
+@font-face {
+    src: url("Prompt-Regular.ttf");
+}
+.root{
+    -fx-background-color: #383838;
+    -fx-border-color: #181818;
+}
+
+.label{
+    -fx-font-family: 'Prompt-Regular';
+    -fx-text-fill: #A1B56C;
+}
+.text-field{
+    -fx-background-color: #383838;
+    -fx-text-fill: #DC9656;
+}
+.button{
+    -fx-background-color: #A16946;
+    -fx-text-fill: #282828;
+
+}
+#ItemsAnchorPane{
+    -fx-background-color: #181818;
+    -fx-text-fill: #DC9656;
+}
+.tree-view .tree-cell{
+    -fx-background-color: #383838;
+    -fx-border-color: #383838;
+    -fx-border-radius: 0;
+    -fx-text-fill: #DC9656;
+}
+.tree-view .tree-cell:selected{
+    -fx-background-color: #585858;
+    -fx-font-weight: bolder;
+    -fx-text-fill: #A1B56C;
+}
+#ActionsAnchorPane{
+    -fx-background-color: #181818;
+    -fx-text-fill: #DC9656;
+}
+#FarmViewVBox{
+    -fx-background-color: #A1B56C;
+}
+
+
+

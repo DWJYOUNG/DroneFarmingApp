@@ -19,9 +19,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/SmartFarmAppStyleSheet.css").toExternalForm());
         stage.setTitle("Farm Dashboard");
         stage.setScene(scene);
         stage.setResizable(false);
+
         stage.show();
     }
 
