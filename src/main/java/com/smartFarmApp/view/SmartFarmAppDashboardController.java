@@ -6,7 +6,6 @@ import com.smartFarmApp.dashboard.Main;
 import com.smartFarmApp.dashboard.items.*;
 
 
-import javafx.animation.PathTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,16 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.HLineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.VLineTo;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-import javafx.util.Duration;
 import javafx.scene.text.Text;
 
 /*
@@ -125,7 +118,7 @@ public class SmartFarmAppDashboardController {
         double yPos = drone.getY();
         int dispX = (int)((getSelectedItem().getPosX() - drone.getX()) + 20); //displacement x and y
         int dispY = (int)((getSelectedItem().getPosY() - drone.getY()) + 20);
-        DroneAnimation droneFlight = new DroneAnimation(drone);
+        SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.visitItem(dispX, dispY);
     }
 
@@ -140,7 +133,7 @@ public class SmartFarmAppDashboardController {
          */
         double xPos = drone.getX();
         double yPos = drone.getY();
-        DroneAnimation droneFlight = new DroneAnimation(drone);
+        SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.scanFarm();
     }
 

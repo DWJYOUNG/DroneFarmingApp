@@ -1,7 +1,7 @@
 package com.smartFarmApp.view;
  import main.java.surelyhuman.jdrone.control.physical.*;
 
-public class SimulatedDroneAdapter implements SimulatedDrone{
+public class PhysicalDroneAdapter implements SimulatedDrone{
 
     @Override
     public void scanFarm() {
