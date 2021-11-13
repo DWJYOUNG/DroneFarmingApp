@@ -120,85 +120,19 @@ public class SmartFarmAppDashboardController {
     //Before visiting the item
     @FXML
     private void handleVisitItemAction(ActionEvent event) {
-        double xPos = drone.getX(); //original drone x and y positions
-        double yPos = drone.getY();
 
-        Path scanpath = new Path();
-        ArcTo arcpath = new ArcTo();
-
-        scanpath.getElements().add(new MoveTo(xPos, yPos));
-        scanpath.getElements().add(new VLineTo(getSelectedItem().getPosY() + 20));
-        scanpath.getElements().add(new HLineTo(getSelectedItem().getPosX() + 20));
-        scanpath.getElements().add(new VLineTo(yPos + 20));
-        scanpath.getElements().add(new HLineTo(xPos + 20));
-
-        PathTransition scantransition = new PathTransition();
-        scantransition.setNode(drone);
-        scantransition.setDuration(Duration.millis(10000));
-        scantransition.setPath(scanpath);
-        scantransition.setCycleCount(1);
-        scantransition.play();
+        DroneAnimation droneAnim = new DroneAnimation(drone);
+	
+		droneAnim.visitItem(getSelectedItem().getPosX()-20, getSelectedItem().getPosY() - 20);
     }
 
     @FXML
     private void handleScanFarmAction(ActionEvent event) {
 
-        /*
-         *  Farm is 800px tall and 600px wide
-         *  Drone is 50x50
-         *  For now I am just going to subtract 50 from where I actually want to go on the (x, y)
-         *  ArcTo will be good for flying directly to a specified coordinate.
-         *
-         */
-        double xPos = drone.getX();
-        double yPos = drone.getY();
+        DroneAnimation droneAnim = new DroneAnimation(drone);
 
-        Path scanpath = new Path();
-        ArcTo arcpath = new ArcTo();
-
-        //Path of the drone so that it travels over every pixel of the farm
-        //Obviously needs to be changed but good enough for now
-        scanpath.getElements().add(new MoveTo(50, 50)); //Initial position (0,0) taking into consideration the drone's 50x50 size
-        scanpath.getElements().add(new HLineTo(550)); //Horizontal move to the top right corner
-        scanpath.getElements().add(new VLineTo(750)); //Vertical move down to bottom right corner
-        scanpath.getElements().add(new HLineTo(500)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(50)); //Vertical move back to top
-        scanpath.getElements().add(new HLineTo(450)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(750)); //Vertical move back to bottom
-        scanpath.getElements().add(new HLineTo(400)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(50)); //Vertical move back to top
-        scanpath.getElements().add(new HLineTo(350)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(750)); //Vertical move back to bottom
-        scanpath.getElements().add(new HLineTo(300)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(50)); //Vertical move back to top
-        scanpath.getElements().add(new HLineTo(250)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(750)); //Vertical move back to bottom
-        scanpath.getElements().add(new HLineTo(200)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(50)); //Vertical move back to top
-        scanpath.getElements().add(new HLineTo(150)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(750)); //Vertical move back to bottom
-        scanpath.getElements().add(new HLineTo(100)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(50)); //Vertical move back to top
-        scanpath.getElements().add(new HLineTo(50)); //Horizontal move left 50
-        scanpath.getElements().add(new VLineTo(750)); //Vertical move back to bottom
-        scanpath.getElements().add(new VLineTo(50)); //Vertical move back to top
-        scanpath.getElements().add(new VLineTo(yPos + 50));
-        scanpath.getElements().add(new HLineTo(xPos + 50));
-				/*
-				arcpath.setX(50); //Destination Horizontal (back to dock)
-				arcpath.setY(50);// Destination Vertical (back to dock)
-				arcpath.setRadiusX(550); //radius of the arc x,y nice and wide to pass over the middle of the farm
-				arcpath.setRadiusY(550);
-				scanpath.getElements().add(arcpath); //add arcpath to the scanpath
-				*/
-        PathTransition scantransition = new PathTransition();
-        scantransition.setNode(drone);
-        scantransition.setDuration(Duration.millis(10000));
-        scantransition.setPath(scanpath);
-        scantransition.setCycleCount(1);
-        scantransition.play();
-
-
+		droneAnim.scanFarm();
+        
         //for testing, would be nice to disable button and change it's text to "scanning" while it is running
         System.out.println("Current state: "+ scantransition.getStatus());
         //ScanFarmAction.setText("Scanning...");
