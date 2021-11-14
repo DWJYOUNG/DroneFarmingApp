@@ -9,9 +9,14 @@ public class PhysicalDroneAdapter implements SimulatedDrone{
     public void scanFarm() {
         tello.takeoff;
         tello.turnCW(90);
-        tello.flyForward(FARMWIDTH/PIXELS_TO_ONE_MODEL_FOOT*CENTIMETERS_PER_MODEL_FOOT);
+        // use small values first to make testing much easier -- 30 and 5 have no actual significance, are for testing only
+        tello.flyForward(30);
+        //tello.flyForward(FARMWIDTH/PIXELS_TO_ONE_MODEL_FOOT*CENTIMETERS_PER_MODEL_FOOT);
+        hoverInPlace(5);
         tello.turnCCW(90);
-        tello.flyForward(FARMHEIGHT/PIXELS_TO_ONE_MODEL_FOOT*CENTIMETERS_PER_MODEL_FOOT);
+        tello.flyForward(30);
+        //tello.flyForward(FARMHEIGHT/PIXELS_TO_ONE_MODEL_FOOT*CENTIMETERS_PER_MODEL_FOOT);
+        tello.land();
     }
 
     @Override
