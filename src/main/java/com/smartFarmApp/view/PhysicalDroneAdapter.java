@@ -1,13 +1,17 @@
 package com.smartFarmApp.view;
- import main.java.surelyhuman.jdrone.control.physical.*;
+import java.io.IOException;
+import main.java.surelyhuman.jdrone.control.physical.*;
 
 public class PhysicalDroneAdapter implements SimulatedDrone{
 
-    TelloDrone tello = new TelloDrone();
+    
 
     @Override
-    public void scanFarm() {
-        tello.takeoff;
+    public void scanFarm() throws InterruptedException, IOException {
+        TelloDrone tello = new TelloDrone();
+        tello.activateSDK();
+        tello.hoverInPlace(10);
+        tello.takeoff();
         tello.turnCW(90);
         // use small values first to make testing much easier -- 30 and 5 have no actual significance, are for testing only
         tello.flyForward(30);
@@ -17,6 +21,7 @@ public class PhysicalDroneAdapter implements SimulatedDrone{
         tello.flyForward(30);
         //tello.flyForward(FARMHEIGHT/PIXELS_TO_ONE_MODEL_FOOT*CENTIMETERS_PER_MODEL_FOOT);
         tello.land();
+        tello.end();
     }
 
     @Override
