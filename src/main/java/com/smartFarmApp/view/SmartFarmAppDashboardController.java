@@ -65,6 +65,9 @@ public class SmartFarmAppDashboardController {
     private Label purchasePrice;
     @FXML
     private Label marketPrice;
+    @FXML
+    private Label warningMessage;
+
     // Selected Item Properties
     @FXML
     private TextField SelectedName;
@@ -199,18 +202,24 @@ public class SmartFarmAppDashboardController {
     //Checks to make sure inputs are valid for item
     @FXML
     private void saveSelectedItemChanges(ActionEvent event) {
+        warningMessage.setText("");
         Item selectedItem = getSelectedItem();
         int index = getSelectedItemIndex();
-        if(selectedItem.getPosX() + selectedItem.getLength() <= 600 && selectedItem.getPosY() + selectedItem.getWidth() <= 800){
-            selectedItem.setName(SelectedName.getText());
+        if(Integer.parseInt(SelectedPosX.getText()) + Integer.parseInt(SelectedLength.getText()) <= 600 && Integer.parseInt(SelectedPosY.getText()) + Integer.parseInt(SelectedWidth.getText()) <= 800){
+            System.out.println("It works big time");
+        }
+        selectedItem.setName(SelectedName.getText());
+        if(Integer.parseInt(SelectedPosX.getText()) + Integer.parseInt(SelectedLength.getText()) <= 600 && Integer.parseInt(SelectedPosY.getText()) + Integer.parseInt(SelectedWidth.getText()) <= 800){
             selectedItem.setPosition(Integer.parseInt(SelectedPosX.getText()), Integer.parseInt(SelectedPosY.getText()));
             selectedItem.setDimensions(Integer.parseInt(SelectedLength.getText()),
                     Integer.parseInt(SelectedWidth.getText()),
                     Integer.parseInt(SelectedHeight.getText()));
-            selectedItem.setPrice(Double.parseDouble(SelectedPrice.getText()));
-        }else {
-            System.out.println("the X position or Y position values put your Item or ItemContainer out of the bounds of the Farm constraints");
+            System.out.println("Booyah!! position and dimensions are within bounds");
+        }else{
+            System.out.println("Please enter a Position and Dimension combo that are within bounds of the 600x800px limit for the Item/Item Container " + selectedItem.getName());
+            warningMessage.setText("Please enter a Position and\nDimension combo that are within\nbounds of the 600x800px limit\nfor the Item/Item Container:\n" + selectedItem.getName());
         }
+        selectedItem.setPrice(Double.parseDouble(SelectedPrice.getText()));
 
         //Error checking to make sure item/container will not extend outside of the farm's x and y boundaries
         if (selectedItem.getPosX() + selectedItem.getLength() >= 600)
