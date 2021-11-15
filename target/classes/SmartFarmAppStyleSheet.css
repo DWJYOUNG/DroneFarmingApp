@@ -42,5 +42,9 @@
     -fx-background-color: #A1B56C;
 }
 
+#warningMessage{
+    -fx-text-fill: red;
+}
+
 
 
