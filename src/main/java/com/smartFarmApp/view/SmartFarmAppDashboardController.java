@@ -156,9 +156,7 @@ public class SmartFarmAppDashboardController {
 
     //Add Item Leaf
     @FXML
-    private void addNewFarmItemLeaf(ActionEvent event) {
-        addNewFarmItem(new ItemLeaf("New_Item",0,0,0,0,0,0));
-    }
+    private void addNewFarmItemLeaf(ActionEvent event) {addNewFarmItem(new ItemLeaf("New_Item",0,0,0,0,0,0));}
 
     //Add Item Container
     @FXML
@@ -203,12 +201,16 @@ public class SmartFarmAppDashboardController {
     private void saveSelectedItemChanges(ActionEvent event) {
         Item selectedItem = getSelectedItem();
         int index = getSelectedItemIndex();
-        selectedItem.setName(SelectedName.getText());
-        selectedItem.setPosition(Integer.parseInt(SelectedPosX.getText()), Integer.parseInt(SelectedPosY.getText()));
-        selectedItem.setDimensions(Integer.parseInt(SelectedLength.getText()),
-                Integer.parseInt(SelectedWidth.getText()),
-                Integer.parseInt(SelectedHeight.getText()));
-        selectedItem.setPrice(Double.parseDouble(SelectedPrice.getText()));
+        if(selectedItem.getPosX() + selectedItem.getLength() <= 600 && selectedItem.getPosY() + selectedItem.getWidth() <= 800){
+            selectedItem.setName(SelectedName.getText());
+            selectedItem.setPosition(Integer.parseInt(SelectedPosX.getText()), Integer.parseInt(SelectedPosY.getText()));
+            selectedItem.setDimensions(Integer.parseInt(SelectedLength.getText()),
+                    Integer.parseInt(SelectedWidth.getText()),
+                    Integer.parseInt(SelectedHeight.getText()));
+            selectedItem.setPrice(Double.parseDouble(SelectedPrice.getText()));
+        }else {
+            System.out.println("the X position or Y position values put your Item or ItemContainer out of the bounds of the Farm constraints");
+        }
 
         //Error checking to make sure item/container will not extend outside of the farm's x and y boundaries
         if (selectedItem.getPosX() + selectedItem.getLength() >= 600)
