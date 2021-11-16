@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.scene.text.Text;
@@ -115,7 +116,7 @@ public class SmartFarmAppDashboardController {
     //Drone visits the item that is selected in the treeview then returns to it's location
     //Before visiting the item
     @FXML
-    private void handleVisitItemAction(ActionEvent event)
+    private void handleSimulateVisitItemAction(ActionEvent event)
     {
         double xPos = drone.getX(); //original drone x and y positions
         double yPos = drone.getY();
@@ -123,10 +124,11 @@ public class SmartFarmAppDashboardController {
         int dispY = (int)((getSelectedItem().getPosY() - drone.getY()) + 20);
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.visitItem(dispX, dispY);
+        System.out.println("handleSimulatedVisitItemAction was called");
     }
 
     @FXML
-    private void handleScanFarmAction(ActionEvent event) {
+    private void handleSimulateScanFarmAction(ActionEvent event) {
         /*
          *  Farm is 800px tall and 600px wide
          *  Drone is 50x50
@@ -138,6 +140,21 @@ public class SmartFarmAppDashboardController {
         double yPos = drone.getY();
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.scanFarm();
+        System.out.println("handleSimulatedScanFarmAction was called");
+    }
+
+    @FXML
+    private void handleVisitItemAction(ActionEvent event){
+        PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
+        drone.visitItem(getSelectedItem().getPosX(), getSelectedItem().getPosY());
+        System.out.println("handleVisitItemAction was called");
+    }
+
+    @FXML
+    private void handleScanFarmAction(ActionEvent event) throws IOException, InterruptedException {
+        PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
+        drone.scanFarm();
+        System.out.println("handleSimulatedScanFarmAction was called");
     }
 
     //Adds the drone and the command center

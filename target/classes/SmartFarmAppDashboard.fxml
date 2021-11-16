@@ -81,16 +81,26 @@
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <Button fx:id="VisitItemAction" layoutX="62.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleVisitItemAction" prefHeight="37.0" prefWidth="259.0" text="Visit Item/Item Container">
+                        <Button fx:id="SimulateVisitItemAction" layoutX="26.0" layoutY="57.0" mnemonicParsing="false" onAction="#handleSimulateVisitItemAction" prefHeight="37.0" prefWidth="154.0" text="Simulate Visit Item">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                        </Button>
+                        <Button fx:id="SimulateScanFarmAction" layoutX="218.0" layoutY="57.0" mnemonicParsing="false" onAction="#handleSimulateScanFarmAction" prefHeight="37.0" prefWidth="154.0" text="Simulate Scan Farm">
                             <font>
-                                <Font size="16.0" />
+                                <Font size="14.0" />
                             </font>
                         </Button>
-                        <Button fx:id="ScanFarmAction" layoutX="102.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleScanFarmAction" prefHeight="37.0" prefWidth="199.0" text="Scan Farm">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Button>
+                  <Button fx:id="VisitItemAction" layoutX="26.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleVisitItemAction" prefHeight="37.0" prefWidth="154.0" text="Visit Item">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="ScanFarm" layoutX="218.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleScanFarmAction" prefHeight="37.0" prefWidth="154.0" text="Scan Farm">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                     </children>
                 </AnchorPane>
             </items>
