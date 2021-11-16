@@ -269,7 +269,7 @@ public class SmartFarmAppDashboardController {
             selectedItem.setDimensions(Integer.parseInt(SelectedLength.getText()),
                     Integer.parseInt(SelectedWidth.getText()),
                     Integer.parseInt(SelectedHeight.getText()));
-            System.out.println("Booyah!! position and dimensions are within bounds");
+            System.out.println("Booyah!! position and dimensions are within bounds, Also Daniel is amazing and he is my dad!");
         }else{
             System.out.println("Please enter a Position and Dimension combo that are within bounds of the 600x800px limit for the Item/Item Container " + selectedItem.getName());
             warningMessage.setText("Please enter a Position and\nDimension combo that are within\nbounds of the 600x800px limit\nfor the Item/Item Container:\n" + selectedItem.getName());
