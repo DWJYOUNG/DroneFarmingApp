@@ -69,6 +69,8 @@ public class SmartFarmAppDashboardController {
     @FXML
     private Label warningMessage;
 
+
+
     // Selected Item Properties
     @FXML
     private TextField SelectedName;
@@ -88,6 +90,10 @@ public class SmartFarmAppDashboardController {
     // Drone Actions
     @FXML
     private Label DroneActionsLabel;
+    @FXML
+    private Button SimulateScanFarmAction;
+    @FXML
+    private Button SimulateVisitItemAction;
     @FXML
     private Button VisitItemAction;
     @FXML
@@ -118,6 +124,10 @@ public class SmartFarmAppDashboardController {
     @FXML
     private void handleSimulateVisitItemAction(ActionEvent event)
     {
+        ScanFarmAction.setDisable(true);
+        VisitItemAction.setDisable(true);
+        SimulateScanFarmAction.setDisable(true);
+
         double xPos = drone.getX(); //original drone x and y positions
         double yPos = drone.getY();
         int dispX = (int)((getSelectedItem().getPosX() - drone.getX()) + 20); //displacement x and y
@@ -125,6 +135,10 @@ public class SmartFarmAppDashboardController {
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.visitItem(dispX, dispY);
         System.out.println("handleSimulatedVisitItemAction was called");
+
+        ScanFarmAction.setDisable(false);
+        VisitItemAction.setDisable(false);
+        SimulateScanFarmAction.setDisable(false);
     }
 
     @FXML
@@ -136,25 +150,49 @@ public class SmartFarmAppDashboardController {
          *  ArcTo will be good for flying directly to a specified coordinate.
          *
          */
+        ScanFarmAction.setDisable(true);
+        VisitItemAction.setDisable(true);
+        SimulateVisitItemAction.setDisable(true);
+
         double xPos = drone.getX();
         double yPos = drone.getY();
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.scanFarm();
         System.out.println("handleSimulatedScanFarmAction was called");
+
+        ScanFarmAction.setDisable(false);
+        VisitItemAction.setDisable(false);
+        SimulateVisitItemAction.setDisable(false);
     }
 
     @FXML
     private void handleVisitItemAction(ActionEvent event){
+        ScanFarmAction.setDisable(true);
+        SimulateScanFarmAction.setDisable(true);
+        SimulateVisitItemAction.setDisable(true);
+
         PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
         drone.visitItem(getSelectedItem().getPosX(), getSelectedItem().getPosY());
         System.out.println("handleVisitItemAction was called");
+
+        ScanFarmAction.setDisable(false);
+        SimulateScanFarmAction.setDisable(false);
+        SimulateVisitItemAction.setDisable(false);
     }
 
     @FXML
     private void handleScanFarmAction(ActionEvent event) throws IOException, InterruptedException {
+        VisitItemAction.setDisable(true);
+        SimulateScanFarmAction.setDisable(true);
+        SimulateVisitItemAction.setDisable(true);
+
         PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
         drone.scanFarm();
         System.out.println("handleSimulatedScanFarmAction was called");
+
+        VisitItemAction.setDisable(false);
+        SimulateScanFarmAction.setDisable(false);
+        SimulateVisitItemAction.setDisable(false);
     }
 
     //Adds the drone and the command center

@@ -96,7 +96,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ScanFarm" layoutX="218.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleScanFarmAction" prefHeight="37.0" prefWidth="154.0" text="Scan Farm">
+                  <Button fx:id="ScanFarmAction" layoutX="218.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleScanFarmAction" prefHeight="37.0" prefWidth="154.0" text="Scan Farm">
                      <font>
                         <Font size="14.0" />
                      </font>
