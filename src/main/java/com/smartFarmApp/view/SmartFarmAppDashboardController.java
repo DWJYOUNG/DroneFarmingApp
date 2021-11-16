@@ -238,22 +238,6 @@ public class SmartFarmAppDashboardController {
         }
         selectedItem.setPrice(Double.parseDouble(SelectedPrice.getText()));
 
-        //Error checking to make sure item/container will not extend outside of the farm's x and y boundaries
-        if (selectedItem.getPosX() + selectedItem.getLength() >= 600)
-        {
-            JOptionPane.showMessageDialog(null, "Entered Values Not Saved\nBeginning X Value and Length of Item extends outside of farm area for Farm Item: " + selectedItem.getName() +
-                            "\nPlease add a valid X Value and Length that add up to be less than 600",
-                    "InfoBox: X Coordinate Error", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        if (selectedItem.getPosY() + selectedItem.getWidth() >= 800)
-        {
-            JOptionPane.showMessageDialog(null, "Entered Values Not Saved\nBeginning Y Value and Width of Item extends outside of farm area for Farm Item: " + selectedItem.getName() +
-                            "\nPlease add a valid Y Value and Width that add up to be less than 800",
-                    "InfoBox: X Coordinate Error", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
         ItemsTreeView.refresh();
         updateFarmItemsTree();
         MultipleSelectionModel msm = ItemsTreeView.getSelectionModel();
