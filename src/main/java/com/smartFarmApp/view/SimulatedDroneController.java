@@ -99,22 +99,22 @@ public class SimulatedDroneController implements SimulatedDrone {
 		this.setup();
 
 		this.turnCW(90);
-		this.flyDown(500);
+		this.flyDown(700);
 		this.turnCCW(90);
-		this.flyRight(700);
+		this.flyRight(500);
 		this.turnCCW(90);
-		this.flyUp(500);
+		this.flyUp(700);
 		this.turnCCW(90);
 
 		
-		for(int i = 0; i < 3; i++) { 
+		for(int i = 0; i < 2; i++) {
 			this.flyLeft(100); 
 			this.turnCCW(90);
-			this.flyDown(500); 
+			this.flyDown(700);
 			this.turnCW(90); 
 			this.flyLeft(100); 
 			this.turnCW(90);
-			this.flyUp(500); 
+			this.flyUp(700);
 			this.turnCCW(90); 
 		}
 		
