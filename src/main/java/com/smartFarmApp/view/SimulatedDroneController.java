@@ -5,6 +5,7 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import com.smartFarmApp.drone.Constants;
 
 /**
  * the point of the concrete class is to make the animations with respect to distances and not aboslute position
@@ -55,7 +56,7 @@ public class SimulatedDroneController implements SimulatedDrone {
 		sequence.getChildren().add(translate);
 	}
 
-	private void rotateCCW (int angle) {
+	private void turnCW (int angle) {
 		RotateTransition rotate = new RotateTransition();
 		rotate.setNode(drone);
 		rotate.setDuration(Duration.millis(magicTimeMs/4));
@@ -65,7 +66,7 @@ public class SimulatedDroneController implements SimulatedDrone {
 
 	}
 
-	private void rotateCW (int angle) {
+	private void turnCCW (int angle) {
 		RotateTransition rotate = new RotateTransition();
 		rotate.setNode(drone);
 		rotate.setDuration(Duration.millis(magicTimeMs/4));
@@ -97,28 +98,29 @@ public class SimulatedDroneController implements SimulatedDrone {
 
 		this.setup();
 
-		this.rotateCCW(90);
-		this.flyDown(600);
-		this.rotateCW(90);
-		this.flyRight(800);
-		this.rotateCW(90);
-		this.flyUp(600);
-		this.rotateCW(90);
+		this.turnCW(90);
+		this.flyDown(500);
+		this.turnCCW(90);
+		this.flyRight(700);
+		this.turnCCW(90);
+		this.flyUp(500);
+		this.turnCCW(90);
 
-
-		for(int i = 0; i < 4; i++) {
-			this.flyLeft(100);
-			this.rotateCW(90);
-			this.flyDown(500);
-			this.rotateCCW(90);
-			this.flyLeft(100);
-			this.rotateCCW(90);
-			this.flyUp(500);
-			this.rotateCW(90);
+		
+		for(int i = 0; i < 3; i++) { 
+			this.flyLeft(100); 
+			this.turnCCW(90);
+			this.flyDown(500); 
+			this.turnCW(90); 
+			this.flyLeft(100); 
+			this.turnCW(90);
+			this.flyUp(500); 
+			this.turnCCW(90); 
 		}
-
-		this.rotateCW(180);
-
+		
+		this.flyLeft(100);
+		this.turnCCW(180);
+		 
 		this.playMovement();
 		this.endMovement();
 	}
@@ -140,28 +142,29 @@ public class SimulatedDroneController implements SimulatedDrone {
 		if (dispX < 0) {
 			xRot = -1;
 			// for forward movement when moving to the left
-			this.rotateCW(180);
+			this.turnCCW(180);
 		}
 		if (dispY < 0) {
 			yRot = -1;
 		}
 
 		this.flyRight(dispX);
-		this.rotateCCW(xRot*yRot*90);
+		this.turnCW(xRot*yRot*90);
 		this.flyDown(dispY);
 
-		this.rotateCW(360);
-		this.rotateCW(xRot*yRot*90);
+		this.turnCCW(360);
+		this.turnCCW(xRot*yRot*90);
+		this.hover(3000);
 
 		this.flyLeft(dispX);
-		this.rotateCCW(xRot*yRot*90);
+		this.turnCW(xRot*yRot*90);
 		this.flyUp(dispY);
 
-		this.rotateCW(xRot*yRot*90);
+		this.turnCCW(xRot*yRot*90);
 
 		// undoing the rotation done early
 		if (xRot == -1) {
-			this.rotateCCW(180);
+			this.turnCW(180);
 		}
 
 		this.playMovement();

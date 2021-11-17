@@ -69,8 +69,6 @@ public class SmartFarmAppDashboardController {
     @FXML
     private Label warningMessage;
 
-
-
     // Selected Item Properties
     @FXML
     private TextField SelectedName;
@@ -90,10 +88,6 @@ public class SmartFarmAppDashboardController {
     // Drone Actions
     @FXML
     private Label DroneActionsLabel;
-    @FXML
-    private Button SimulateScanFarmAction;
-    @FXML
-    private Button SimulateVisitItemAction;
     @FXML
     private Button VisitItemAction;
     @FXML
@@ -122,27 +116,17 @@ public class SmartFarmAppDashboardController {
     //Drone visits the item that is selected in the treeview then returns to it's location
     //Before visiting the item
     @FXML
-    private void handleSimulateVisitItemAction(ActionEvent event)
+    private void handleVisitItemAction(ActionEvent event)
     {
-        ScanFarmAction.setDisable(true);
-        VisitItemAction.setDisable(true);
-        SimulateScanFarmAction.setDisable(true);
-
-        double xPos = drone.getX(); //original drone x and y positions
-        double yPos = drone.getY();
-        int dispX = (int)((getSelectedItem().getPosX() - drone.getX()) + 20); //displacement x and y
-        int dispY = (int)((getSelectedItem().getPosY() - drone.getY()) + 20);
+        
+        int dispX = (int)(getSelectedItem().getPosX() - drone.getFitWidth()/2); //displacement x and y
+        int dispY = (int)(getSelectedItem().getPosY() - drone.getFitHeight()/3);
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.visitItem(dispX, dispY);
-        System.out.println("handleSimulatedVisitItemAction was called");
-
-        ScanFarmAction.setDisable(false);
-        VisitItemAction.setDisable(false);
-        SimulateScanFarmAction.setDisable(false);
     }
 
     @FXML
-    private void handleSimulateScanFarmAction(ActionEvent event) {
+    private void handleScanFarmAction(ActionEvent event) throws InterruptedException, IOException {
         /*
          *  Farm is 800px tall and 600px wide
          *  Drone is 50x50
@@ -150,49 +134,13 @@ public class SmartFarmAppDashboardController {
          *  ArcTo will be good for flying directly to a specified coordinate.
          *
          */
-        ScanFarmAction.setDisable(true);
-        VisitItemAction.setDisable(true);
-        SimulateVisitItemAction.setDisable(true);
-
-        double xPos = drone.getX();
-        double yPos = drone.getY();
+          
+        PhysicalDroneAdapter pDrone = new PhysicalDroneAdapter();
+        pDrone.scanFarm();      
+        
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.scanFarm();
-        System.out.println("handleSimulatedScanFarmAction was called");
 
-        ScanFarmAction.setDisable(false);
-        VisitItemAction.setDisable(false);
-        SimulateVisitItemAction.setDisable(false);
-    }
-
-    @FXML
-    private void handleVisitItemAction(ActionEvent event){
-        ScanFarmAction.setDisable(true);
-        SimulateScanFarmAction.setDisable(true);
-        SimulateVisitItemAction.setDisable(true);
-
-        PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
-        drone.visitItem(getSelectedItem().getPosX(), getSelectedItem().getPosY());
-        System.out.println("handleVisitItemAction was called");
-
-        ScanFarmAction.setDisable(false);
-        SimulateScanFarmAction.setDisable(false);
-        SimulateVisitItemAction.setDisable(false);
-    }
-
-    @FXML
-    private void handleScanFarmAction(ActionEvent event) throws IOException, InterruptedException {
-        VisitItemAction.setDisable(true);
-        SimulateScanFarmAction.setDisable(true);
-        SimulateVisitItemAction.setDisable(true);
-
-        PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
-        drone.scanFarm();
-        System.out.println("handleSimulatedScanFarmAction was called");
-
-        VisitItemAction.setDisable(false);
-        SimulateScanFarmAction.setDisable(false);
-        SimulateVisitItemAction.setDisable(false);
     }
 
     //Adds the drone and the command center
@@ -260,21 +208,37 @@ public class SmartFarmAppDashboardController {
         warningMessage.setText("");
         Item selectedItem = getSelectedItem();
         int index = getSelectedItemIndex();
-        if(Integer.parseInt(SelectedPosX.getText()) + Integer.parseInt(SelectedLength.getText()) <= 600 && Integer.parseInt(SelectedPosY.getText()) + Integer.parseInt(SelectedWidth.getText()) <= 800){
+        if(Integer.parseInt(SelectedPosX.getText()) + Integer.parseInt(SelectedLength.getText()) <= 800 && Integer.parseInt(SelectedPosY.getText()) + Integer.parseInt(SelectedWidth.getText()) <= 600){
             System.out.println("It works big time");
         }
         selectedItem.setName(SelectedName.getText());
-        if(Integer.parseInt(SelectedPosX.getText()) + Integer.parseInt(SelectedLength.getText()) <= 600 && Integer.parseInt(SelectedPosY.getText()) + Integer.parseInt(SelectedWidth.getText()) <= 800){
+        if(Integer.parseInt(SelectedPosX.getText()) + Integer.parseInt(SelectedLength.getText()) <= 800 && Integer.parseInt(SelectedPosY.getText()) + Integer.parseInt(SelectedWidth.getText()) <= 600){
             selectedItem.setPosition(Integer.parseInt(SelectedPosX.getText()), Integer.parseInt(SelectedPosY.getText()));
             selectedItem.setDimensions(Integer.parseInt(SelectedLength.getText()),
                     Integer.parseInt(SelectedWidth.getText()),
                     Integer.parseInt(SelectedHeight.getText()));
-            System.out.println("Booyah!! position and dimensions are within bounds, Also Daniel is amazing and he is my dad!");
+            System.out.println("Booyah!! position and dimensions are within bounds");
         }else{
-            System.out.println("Please enter a Position and Dimension combo that are within bounds of the 600x800px limit for the Item/Item Container " + selectedItem.getName());
-            warningMessage.setText("Please enter a Position and\nDimension combo that are within\nbounds of the 600x800px limit\nfor the Item/Item Container:\n" + selectedItem.getName());
+            System.out.println("Please enter a Position and Dimension combo that are within bounds of the 800x600px limit for the Item/Item Container " + selectedItem.getName());
+            warningMessage.setText("Please enter a Position and\nDimension combo that are within\nbounds of the 800x600px limit\nfor the Item/Item Container:\n" + selectedItem.getName());
         }
         selectedItem.setPrice(Double.parseDouble(SelectedPrice.getText()));
+
+        //Error checking to make sure item/container will not extend outside of the farm's x and y boundaries
+        if (selectedItem.getPosX() + selectedItem.getLength() >= 800)
+        {
+            JOptionPane.showMessageDialog(null, "Entered Values Not Saved\nBeginning X Value and Length of Item extends outside of farm area for Farm Item: " + selectedItem.getName() +
+                            "\nPlease add a valid X Value and Length that add up to be less than 800",
+                    "InfoBox: X Coordinate Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if (selectedItem.getPosY() + selectedItem.getWidth() >= 600)
+        {
+            JOptionPane.showMessageDialog(null, "Entered Values Not Saved\nBeginning Y Value and Width of Item extends outside of farm area for Farm Item: " + selectedItem.getName() +
+                            "\nPlease add a valid Y Value and Width that add up to be less than 600",
+                    "InfoBox: X Coordinate Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
 
         ItemsTreeView.refresh();
         updateFarmItemsTree();
