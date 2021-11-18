@@ -122,9 +122,15 @@ public class SmartFarmAppDashboardController {
 
     @FXML
     private void handleSimulateVisitItemAction(){
-        this.ScanFarmAction.setDisable(true);
-        this.VisitItemAction.setDisable(true);
-        this.SimulateScanFarmAction.setDisable(true);
+        //this.ScanFarmAction.setDisable(true);
+        //this.VisitItemAction.setDisable(true);
+        //this.SimulateScanFarmAction.setDisable(true);
+        //this.SimulateVisitItemAction.setDisable(true);
+
+        ScanFarmAction.setVisible(false);
+        VisitItemAction.setVisible(false);
+        SimulateScanFarmAction.setVisible(false);
+        SimulateVisitItemAction.setVisible(false);
 
         double xPos = drone.getX(); //original drone x and y positions
         double yPos = drone.getY();
@@ -134,41 +140,70 @@ public class SmartFarmAppDashboardController {
         droneFlight.visitItem(dispX, dispY);
         System.out.println("handleSimulatedVisitItemAction was called");
 
-        this.ScanFarmAction.setDisable(false);
-        this.VisitItemAction.setDisable(false);
-        this.SimulateScanFarmAction.setDisable(false);
+        //this.ScanFarmAction.setDisable(false);
+        //this.VisitItemAction.setDisable(false);
+        //this.SimulateScanFarmAction.setDisable(false);
+        //this.SimulateVisitItemAction.setDisable(false);
+
+        ScanFarmAction.setVisible(true);
+        VisitItemAction.setVisible(true);
+        SimulateScanFarmAction.setVisible(true);
+        SimulateVisitItemAction.setVisible(true);
 
     }
     @FXML
     private void handleSimulateScanFarmAction(){
 
-        this.ScanFarmAction.setDisable(true);
-        this.VisitItemAction.setDisable(true);
-        this.SimulateVisitItemAction.setDisable(true);
+        //this.ScanFarmAction.setDisable(true);
+        //this.VisitItemAction.setDisable(true);
+        //this.SimulateVisitItemAction.setDisable(true);
+        //this.SimulateScanFarmAction.setDisable(true);
+
+        ScanFarmAction.setVisible(false);
+        VisitItemAction.setVisible(false);
+        SimulateScanFarmAction.setVisible(false);
+        SimulateVisitItemAction.setVisible(false);
 
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
         droneFlight.scanFarm();
         System.out.println("handleSimulatedScanFarmAction was called");
 
-        this.ScanFarmAction.setDisable(false);
-        this.VisitItemAction.setDisable(false);
-        this.SimulateVisitItemAction.setDisable(false);
+        //this.ScanFarmAction.setDisable(false);
+        //this.VisitItemAction.setDisable(false);
+        //this.SimulateVisitItemAction.setDisable(false);
+        //this.SimulateScanFarmAction.setDisable(false);
 
+        ScanFarmAction.setVisible(true);
+        VisitItemAction.setVisible(true);
+        SimulateScanFarmAction.setVisible(true);
+        SimulateVisitItemAction.setVisible(true);
 
     }
     @FXML
     private void handleVisitItemAction(ActionEvent event) throws IOException, InterruptedException {
-        this.ScanFarmAction.setDisable(true);
-        this.SimulateScanFarmAction.setDisable(true);
-        this.SimulateVisitItemAction.setDisable(true);
+        //this.ScanFarmAction.setDisable(true);
+        //this.VisitItemAction.setDisable(true);
+        //this.SimulateScanFarmAction.setDisable(true);
+        //this.SimulateVisitItemAction.setDisable(true);
+
+        ScanFarmAction.setVisible(false);
+        VisitItemAction.setVisible(false);
+        SimulateScanFarmAction.setVisible(false);
+        SimulateVisitItemAction.setVisible(false);
 
         PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
         drone.visitItem(getSelectedItem().getPosX(), getSelectedItem().getPosY());
         System.out.println("handleVisitItemAction was called");
 
-        this.ScanFarmAction.setDisable(false);
-        this.SimulateScanFarmAction.setDisable(false);
-        this.SimulateVisitItemAction.setDisable(false);
+        //this.ScanFarmAction.setDisable(false);
+        //this.VisitItemAction.setDisable(false);
+        //this.SimulateScanFarmAction.setDisable(false);
+        //this.SimulateVisitItemAction.setDisable(false);
+
+        ScanFarmAction.setVisible(true);
+        VisitItemAction.setVisible(true);
+        SimulateScanFarmAction.setVisible(true);
+        SimulateVisitItemAction.setVisible(true);
 
     }
 
@@ -181,19 +216,29 @@ public class SmartFarmAppDashboardController {
          *  ArcTo will be good for flying directly to a specified coordinate.
          *
          */
-        this.VisitItemAction.setDisable(true);
-        this.SimulateScanFarmAction.setDisable(true);
-        this.SimulateVisitItemAction.setDisable(true);
+        //this.ScanFarmAction.setDisable(true);
+        //this.VisitItemAction.setDisable(true);
+        //this.SimulateScanFarmAction.setDisable(true);
+        //this.SimulateVisitItemAction.setDisable(true);
+
+        ScanFarmAction.setVisible(false);
+        VisitItemAction.setVisible(false);
+        SimulateScanFarmAction.setVisible(false);
+        SimulateVisitItemAction.setVisible(false);
 
         PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
         drone.scanFarm();
         System.out.println("handleSimulatedScanFarmAction was called");
 
-        this.VisitItemAction.setDisable(false);
-        this.SimulateScanFarmAction.setDisable(false);
-        this.SimulateVisitItemAction.setDisable(false);
+        //this.ScanFarmAction.setDisable(false);
+        //this.VisitItemAction.setDisable(false);
+        //this.SimulateScanFarmAction.setDisable(false);
+        //this.SimulateVisitItemAction.setDisable(false);
 
-
+        ScanFarmAction.setVisible(true);
+        VisitItemAction.setVisible(true);
+        SimulateScanFarmAction.setVisible(true);
+        SimulateVisitItemAction.setVisible(true);
     }
 
     //Adds the drone and the command center

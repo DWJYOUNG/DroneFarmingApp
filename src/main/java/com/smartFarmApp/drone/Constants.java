@@ -10,8 +10,9 @@ package com.smartFarmApp.drone;
 
 public class Constants {
 
-	public static final int FARMWIDTH = 800; // farm width on screen in pixels 4:3 ratio
-	public static final int FARMHEIGHT = 600; // farm height on screen in pixels 4:3 ratio
+	public static final int FARMHEIGHT = 160;//200;//800; // farm height on screen in pixels 4:3 ratio
+	public static final int FARMWIDTH = 120;//150;//600; // farm width on screen in pixels 4:3 ratio
+	public static final int DRONESIZE = 20;//25;//100;
 	public static final int FARMDEPTH = 0;
 
 	public static final int MODELWIDTH = 32; // farm width physical model in feet 4:3 ratio

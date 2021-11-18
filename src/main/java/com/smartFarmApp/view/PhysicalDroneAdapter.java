@@ -11,28 +11,28 @@ public class PhysicalDroneAdapter implements SimulatedDrone{
     public void scanFarm() throws InterruptedException, IOException {
         TelloDrone tello = new TelloDrone();
         tello.activateSDK();
-        tello.hoverInPlace(5);
-        tello.takeoff();
+        tello.hoverInPlace(3);
+		tello.takeoff();
         tello.turnCW(90);
-        tello.flyForward((Constants.FARMHEIGHT-100)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
+        tello.flyForward((Constants.FARMHEIGHT-Constants.DRONESIZE)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
         tello.turnCCW(90);
-        tello.flyForward((Constants.FARMWIDTH-100)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
+        tello.flyForward((Constants.FARMWIDTH-Constants.DRONESIZE)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
         tello.turnCCW(90);
-        tello.flyForward((Constants.FARMHEIGHT-100)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
+        tello.flyForward((Constants.FARMHEIGHT-Constants.DRONESIZE)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
         tello.turnCCW(90);
         
-        for(int i = 0; i < 3; i++) { 
-			tello.flyForward(100); 
+        for(int i = 0; i < 2; i++) {
+			tello.flyForward(Constants.DRONESIZE/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 			tello.turnCCW(90);
-			tello.flyForward((Constants.FARMHEIGHT-100)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
+			tello.flyForward((Constants.FARMHEIGHT-Constants.DRONESIZE)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 			tello.turnCW(90); 
-			tello.flyForward(100); 
+			tello.flyForward(Constants.DRONESIZE/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 			tello.turnCW(90);
-			tello.flyForward((Constants.FARMHEIGHT-100)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
+			tello.flyForward((Constants.FARMHEIGHT-Constants.DRONESIZE)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 			tello.turnCCW(90); 
 		}
 		
-		tello.flyForward(100);
+		tello.flyForward(Constants.DRONESIZE/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 		tello.turnCCW(180);
 		
 		tello.hoverInPlace(2);
@@ -58,17 +58,17 @@ public class PhysicalDroneAdapter implements SimulatedDrone{
 			yRot = -1;
 		}
 
-		tello.flyForward(dispX);
+		tello.flyForward(dispX/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 		tello.turnCW(xRot*yRot*90);
-		tello.flyForward(dispY);
+		tello.flyForward(dispY/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 
 		tello.turnCCW(360);
 		tello.turnCCW(xRot*yRot*90);
 		tello.hoverInPlace(2);
 
-		tello.flyForward(dispX);
+		tello.flyForward(dispX/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 		tello.turnCW(xRot*yRot*90);
-		tello.flyForward(dispY);
+		tello.flyForward(dispY/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
 
 		tello.turnCCW(xRot*yRot*90);
 
