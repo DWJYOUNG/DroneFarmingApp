@@ -13,6 +13,7 @@ public class PhysicalDroneAdapter implements SimulatedDrone{
         tello.activateSDK();
         tello.hoverInPlace(3);
 		tello.takeoff();
+		tello.increaseAltitude(Constants.FARMDEPTH/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
         tello.turnCW(90);
         tello.flyForward((Constants.FARMHEIGHT-Constants.DRONESIZE)/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
         tello.turnCCW(90);
@@ -42,9 +43,13 @@ public class PhysicalDroneAdapter implements SimulatedDrone{
     }
 
     @Override
-    public void visitItem(int dispX, int dispY) throws InterruptedException, IOException {
-    	
-    	TelloDrone tello = new TelloDrone();
+    public void visitItem(int dispX, int dispY, int dispZ) throws InterruptedException, IOException {
+
+		TelloDrone tello = new TelloDrone();
+		tello.activateSDK();
+		tello.hoverInPlace(3);
+		tello.takeoff();
+		tello.increaseAltitude(dispZ/Constants.PIXELS_TO_ONE_MODEL_FOOT*Constants.CENTIMETERS_PER_MODEL_FOOT);
     	
     	int xRot = 1;
 		int yRot = 1;
@@ -76,5 +81,10 @@ public class PhysicalDroneAdapter implements SimulatedDrone{
 		if (xRot == -1) {
 			tello.turnCW(180);
 		}
+
+		tello.hoverInPlace(2);
+
+		tello.land();
+		tello.end();
     }
 }

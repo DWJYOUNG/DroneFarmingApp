@@ -6,6 +6,7 @@ import com.smartFarmApp.dashboard.Main;
 import com.smartFarmApp.dashboard.items.*;
 
 
+import com.smartFarmApp.drone.Constants;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -137,7 +138,7 @@ public class SmartFarmAppDashboardController {
         int dispX = (int)((getSelectedItem().getPosX() - drone.getX()) + 20);//displacement x and y
         int dispY = (int)((getSelectedItem().getPosY() - drone.getY()) + 20);
         SimulatedDroneController droneFlight = new SimulatedDroneController(drone);
-        droneFlight.visitItem(dispX, dispY);
+        droneFlight.visitItem(dispX, dispY, 0);
         System.out.println("handleSimulatedVisitItemAction was called");
 
         //this.ScanFarmAction.setDisable(false);
@@ -192,7 +193,7 @@ public class SmartFarmAppDashboardController {
         SimulateVisitItemAction.setVisible(false);
 
         PhysicalDroneAdapter drone = new PhysicalDroneAdapter();
-        drone.visitItem(getSelectedItem().getPosX(), getSelectedItem().getPosY());
+        drone.visitItem(getSelectedItem().getPosX(), getSelectedItem().getPosY(), Constants.FARMDEPTH);
         System.out.println("handleVisitItemAction was called");
 
         //this.ScanFarmAction.setDisable(false);

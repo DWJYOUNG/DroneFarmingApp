@@ -125,7 +125,7 @@ public class SimulatedDroneController implements SimulatedDrone {
 		this.endMovement();
 	}
 
-	public void visitItem(int dispX, int dispY) {
+	public void visitItem(int dispX, int dispY, int dispZ) {
 		// yoinked comment from correct farm layout
 		/*
 		 *  Farm is 800px tall and 600px wide
